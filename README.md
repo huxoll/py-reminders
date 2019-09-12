@@ -53,7 +53,7 @@ distribution of the reminders across py-reminder instances. It is intended
 mainly for testing and development purposes. To use that, invoke py-reminders
 similarly to the following:
 
-```DBTYPE=mem ./py-reminders```
+```DBTYPE=mem ./py-reminders.py```
 
 or use a similar environment setting in a kubernetes deployment.
 
@@ -93,8 +93,6 @@ To get the code, get it similarly to the following:
 
     git clone https://github.com/huxoll/py-reminders
     cd py-reminders
-    git submodule init
-    git submodule update --recursive
 
 #### Build the Code
 The project includes a Makefile for use in building the py-reminders

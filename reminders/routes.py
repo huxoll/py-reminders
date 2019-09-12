@@ -4,6 +4,7 @@ from .forms import ReminderForm, ReminderDeleteForm
 from .models import Reminder
 from datetime import datetime
 
+
 @app.route('/')
 @app.route('/index')
 def index():

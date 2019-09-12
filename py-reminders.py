@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from reminders import app
 import os
 port = int(os.environ.get('PORT', 8080))
