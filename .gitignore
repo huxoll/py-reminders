@@ -1,10 +1,9 @@
 *.log
-*.a
-*.so
 *.swp
-linux-amd64
+*.db
+**.pyc
 kubectl
-__pycache__
+reminders/__pycache__
 deployments/kubernetes/base/kustomization.yaml
 build/docker/py-reminders
 build/docker/html

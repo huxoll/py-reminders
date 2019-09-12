@@ -5,9 +5,8 @@
   <div class="ten columns">
     <h4>Editing Message:</h4>
     <form action="/save" method="post">
-      <input type="hidden" name="guid" value="{{ reminder.guid }}">
+      <input type="hidden" name="xguid" value=" reminder.guid s">
       {{ form.hidden_tag() }}
-      {{ form.guid() }}
       {{ form.message(class='u-full-width') }}
       {% for error in form.message.errors %}
           <span style="color: red;">{{ error }}</span>
