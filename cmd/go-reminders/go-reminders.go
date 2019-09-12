@@ -8,7 +8,7 @@ package main
 import (
 	"os"
 
-	"github.com/vmware/go-reminders/internal/app"
+	"github.com/vmware/py-reminders/internal/app"
 )
 
 func main() {

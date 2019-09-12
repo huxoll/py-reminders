@@ -82,7 +82,7 @@ cat &gt;vmworld.yaml &lt;&lt;EOF
 heat_template_version: 2013-05-23
 
 description: &gt;
-  Deploys go-reminders server into an existing neutron tenant network and
+  Deploys py-reminders server into an existing neutron tenant network and
   assigns floating IP address such that the server ends up routable to/from
   the public net. Note that this stack presumes that it is built in the
   context of a shell script as it is intended for jenkins builds (or
@@ -130,8 +130,8 @@ resources:
         #apt-get update
         #apt-get install -y docker.io
         sleep 2
-        docker pull opencloudtools/go-reminders
-        docker run -d -p 8080:8080 opencloudtools/go-reminders /go-reminders -u &apos;${VRO_USER}&apos; -s &apos;${VRO_PASSWORD}&apos; -i -v &apos;${VRO_URL}&apos;
+        docker pull opencloudtools/py-reminders
+        docker run -d -p 8080:8080 opencloudtools/py-reminders /py-reminders -u &apos;${VRO_USER}&apos; -s &apos;${VRO_PASSWORD}&apos; -i -v &apos;${VRO_URL}&apos;
 
   reminders_port:
     type: OS::Neutron::Port
@@ -178,7 +178,7 @@ EOF
 ### Run the HEAT stack
 heat --insecure stack-create -f vmworld.yaml \
     -P &quot;image=${IMAGE_ID};flavor=m1.medium;public_net_id=${public_net_id};private_net_id=${private_net_id};private_subnet_id=${private_subnet_id}&quot; \
-    go-reminders-${BUILD_NUMBER}
+    py-reminders-${BUILD_NUMBER}
 </command>
     </hudson.tasks.Shell>
   </builders>

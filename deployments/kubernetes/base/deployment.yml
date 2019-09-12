@@ -8,31 +8,31 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: go-reminders
+  name: py-reminders
   labels:
-    app: go-reminders
+    app: py-reminders
 spec:
   selector:
     matchLabels:
-      app: go-reminders
+      app: py-reminders
   template:
     metadata:
       labels:
-        app: go-reminders
+        app: py-reminders
     spec:
       containers:
-        - name: go-reminders
+        - name: py-reminders
           image: docker-registry-repo
           env:
           - name: DBTYPE
             value: mem
           - name: VHOST
-            value: go-reminders.corp.local
+            value: py-reminders.corp.local
           ports:
             - containerPort: 8080
-              name: go-reminders
+              name: py-reminders
               protocol: TCP
           command:
-            - "/go-reminders"
+            - "/py-reminders"
       imagePullSecrets:
-        - name: go-reminders-registry-creds
+        - name: py-reminders-registry-creds

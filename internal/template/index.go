@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/vmware/go-reminders/pkg/reminders"
+	"github.com/vmware/py-reminders/pkg/reminders"
 )
 
 // Generate the main (home) page of the site.

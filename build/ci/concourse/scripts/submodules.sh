@@ -1,5 +1,5 @@
 #!/bin/bash
-# go-reminders submodules.sh
+# py-reminders submodules.sh
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)

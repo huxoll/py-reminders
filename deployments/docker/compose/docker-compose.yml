@@ -21,7 +21,7 @@ etcdsrv:
     - "-advertise-client-urls"
     - "http://192.168.99.100:2379,http://192.168.99.100:4001"
 #reminders:
-  #image: opencloudtools/go-reminders
+  #image: opencloudtools/py-reminders
   #ports:
   #- "8080:8080"
   #links:

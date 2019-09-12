@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/vmware/go-reminders/pkg/reminders"
+	"github.com/vmware/py-reminders/pkg/reminders"
 )
 
 // Opens a form for editing and subsequently saving a Reminder.

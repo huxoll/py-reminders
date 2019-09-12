@@ -1,5 +1,5 @@
 #!/bin/bash
-# go-reminders deployment-files.sh
+# py-reminders deployment-files.sh
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -49,7 +49,7 @@ cd kubernetes/helm
 # fixup the values file
 cp values-minikube.yml values.yml
 repl="${container//\//\\/}"
-sed -i -e "s/repository: tdhite\/go-reminders/repository: ${repl}/g" values.yml
+sed -i -e "s/repository: tdhite\/py-reminders/repository: ${repl}/g" values.yml
 sed -i -e "s/tag: latest/tag: ${tag}/g" values.yml
 
 # Check whats here

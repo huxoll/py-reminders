@@ -1,4 +1,4 @@
-# go-reminders params.yml
+# py-reminders params.yml
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -6,15 +6,15 @@
 # SPDX-License-Identifier: https://spdx.org/licenses/MIT.html
 #
 
-docker-registry-repo: "mydockerrepo/go-reminders"
+docker-registry-repo: "mydockerrepo/py-reminders"
 docker-registry-email: "myemail@someserver.com"
 docker-registry-user: "mydockerhubuser"
 docker-registry-passwd: "mydockerhubpassword"
 semver-git-repo: "git@github.com:mygithubid/semvers"
 semver-git-repo-branch: master
-semver-file: "go-reminders"
-go-reminders-git-repo: "git@github.com/mygithubid/go-reminders"
-go-reminders-git-repo-branch: "master"
+semver-file: "py-reminders"
+py-reminders-git-repo: "git@github.com/mygithubid/py-reminders"
+py-reminders-git-repo-branch: "master"
 helm_ver: "v2.14.3"
 k8s-namespace: "reminders"
 deployenv: "dev"
@@ -23,7 +23,7 @@ deployenv: "dev"
 taskimage: "concourse.corp.local/reminders-build"
 taskimagetag: "1.0.0"
 # This is a .ssh private key used for accessing the
-# various git repos (go-reminders and semvers)
+# various git repos (py-reminders and semvers)
 private-git-repo-key: |
   -----BEGIN RSA PRIVATE KEY-----
   all your private key data here

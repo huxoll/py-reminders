@@ -14,7 +14,7 @@ import (
 	"time"
 
 	uuid "github.com/satori/go.uuid"
-	"github.com/vmware/go-reminders/pkg/stats"
+	"github.com/vmware/py-reminders/pkg/stats"
 )
 
 // Reminder is serializable as json (tagged) and also SQL tags provide for

@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/vmware/go-reminders/pkg/reminders"
+	"github.com/vmware/py-reminders/pkg/reminders"
 )
 
 // Saves a Reminder object given a POST request with the buid and message set

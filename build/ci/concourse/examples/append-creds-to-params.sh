@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: https://spdx.org/licenses/MIT.html
 #
 # This script may help adding credentials to a params.yml file modified for
-# use in setting concourse pipelines for the go-reminders project.
+# use in setting concourse pipelines for the py-reminders project.
 #
 # The script makes attempts to pull cred info out of ~/.kube/config and set
 # appropriate values (appends to) the file params.yml. It also sets a market

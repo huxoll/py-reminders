@@ -1,4 +1,4 @@
-# go-reminders
+# py-reminders
 
 ## Overview
 Sample microservice to manage reminders (tasks one seeks to remember).
@@ -8,17 +8,17 @@ To try out the microservice, it must be built and executed in a suitable
 environment. Details are [further below](#build-and-run).
 
 ### Prerequisites
-There are some basic requirements in order build and use the go-reminders
+There are some basic requirements in order build and use the py-reminders
 microservice:
 
-1. A kubernetes cluster sufficient to run go-reminders and its backing services (e.g., mysql);
+1. A kubernetes cluster sufficient to run py-reminders and its backing services (e.g., mysql);
 2. A Docker registry and relevant credentials for pushing and pulling containers;
 3. A backing service (generally mysql) running in the kubernetes cluster;
 4. A Pivotal Concourse setup in order to run the build and deploy processes;
-5. [Helm](https://helm.sh) for managing go-reminders deployments, also used by the ci/cd pipelines.
+5. [Helm](https://helm.sh) for managing py-reminders deployments, also used by the ci/cd pipelines.
 
 #### Kubernetes Cluster
-Running go-reminders generally targets a kubenernetes cluster. It runs in the
+Running py-reminders generally targets a kubenernetes cluster. It runs in the
 default namespace.
 
 In addition, as with any kubernetes cluster, credentials should be setup.
@@ -26,16 +26,16 @@ Secrets for pushing and pulling containers from the Docker registry must exist
 before building the microservice. The way to add such credentials is as
 follows:
 
-```kubectl create secret docker-registry go-reminders-registry-creds --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>```
+```kubectl create secret docker-registry py-reminders-registry-creds --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>```
 
-As well, in one form or another, credentials for go-reminders to make use of a
+As well, in one form or another, credentials for py-reminders to make use of a
 backing store like MySQL is required. Those can be obtained in various ways,
 such as described [below](#obtaining-backing-storage-secrets). Another way is
 to use the [concourse credential
 management](https://concourse-ci.org/creds.html) facility if you want a more
 secure model. To do so, integrate your service of choice and set the
 environment variables or command line switches in the kubernetes deployment
-for running go-reminders.
+for running py-reminders.
 
 #### Backing Service
 The microservice needs a backing service in which to store the reminders.
@@ -49,11 +49,11 @@ tables.
 ##### MemDB Backing Service
 A memory only backing can be used for testing or demonstrative purposes. The
 MemDB service is purely in memory and provides no persistence at all, nor
-distribution of the reminders across go-reminder instances. It is intended
-mainly for testing and development purposes. To use that, invoke go-reminders
+distribution of the reminders across py-reminder instances. It is intended
+mainly for testing and development purposes. To use that, invoke py-reminders
 similarly to the following:
 
-```DBTYPE=mem ./cmd/go-reminders/go-reminders```
+```DBTYPE=mem ./py-reminders```
 
 or use a similar environment setting in a kubernetes deployment.
 
@@ -66,7 +66,7 @@ When utilizing the vRO capabilities, the service depends on the vRO workflow
 to provide a valid database host address, admin login and login password where
 the admin user has rights to create a database and tables. The vRO code may
 need to change based on various workflows, but the gist is in the
-[vro.go](pkg/reminders/vro.go) file.
+[vro.py](py-reminders/vro.py) file.
 
 ###### Obtaining MySQL Creds from Etcd
 When using etcd support, the expectation is that the etcd service is
@@ -77,7 +77,7 @@ deployed, and key/value pairs exist for:
 * /user
 * /passwd
 
-All of these entries are required for go-reminders to successfully make
+All of these entries are required for py-reminders to successfully make
 a connection to the MySQL server to support stateful operations.
 
 ### Build and Run
@@ -91,17 +91,17 @@ help out.
 #### Get the Code
 To get the code, get it similarly to the following:
 
-    git clone https://github.com/vmware/go-reminders
-    cd go-reminders
+    git clone https://github.com/huxoll/py-reminders
+    cd py-reminders
     git submodule init
     git submodule update --recursive
 
 #### Build the Code
-The project includes a Makefile for use in building the go-reminders
+The project includes a Makefile for use in building the py-reminders
 microservice. To build a Docker container, you must provide a container name
 for pushing to a registry.
 
-    export CONTAINER=myreponame/go-reminders
+    export CONTAINER=myreponame/py-reminders
     make
 
 That will build and push the container image assuming you have already logged
@@ -110,15 +110,8 @@ in to your registry with "docker login". If you are using
 makefile as follows to preclude immediately pushing the Docker image, instead
 using the concourse resource to perform that task:
 
-    export CONTAINER=myreponame/go-reminders:version-tag
-    make cmd/go-reminders/go-reminders
-
-The output of the concourse task would be the go-reminders executable.
-
-To build for mac use the following.  Examples elsewhere in this document should
-switch to referencing `go-reminders-darwin` instead of `go-reminders`
-
-    make cmd/go-reminders/go-reminders-darwin
+    export CONTAINER=myreponame/py-reminders:version-tag
+    make cmd/py-reminders/py-reminders
 
 #### CI/CD Pipelines
 The code includes various pipeines in the [build/ci](build/ci) directory. They
@@ -135,7 +128,7 @@ therein to explain using Concourse with this project.
 A set of config.xml files for jobs and the Gerrit trigger plugin exist
 in the [jenkins](build/ci/jenkins) directory. The config files can be used as templates
 to setup a flow that, from a merge, for example, of the sources triggers a
-full build, push of the go-reminders container to Docker hub, generate a HEAT
+full build, push of the py-reminders container to Docker hub, generate a HEAT
 template to run it on an OpenStack instance, and thereafter kick off the HEAT
 stack.
 
@@ -149,29 +142,29 @@ with the environment taking higher priority to lean a bit more towards
 the environment with the long form switch name in all capital letters.
 
 ##### Standalone
-For instance To invoke go-reminders with a mysql database at
+For instance To invoke py-reminders with a mysql database at
 mysql.corp.local:3306, with user credentials as root/rootpasswd, issue the
 following command:
 
-    HOST=mysql.corp.local:3306 USER=root PASSWD=rootpasswd DBTYPE=mysql cmd/go-reminders/go-reminders
+    HOST=mysql.corp.local:3306 USER=root PASSWD=rootpasswd DBTYPE=mysql cmd/py-reminders/py-reminders
 
 Alternatively:
 
-    cmd/go-reminders/go-reminders --host=mysql.corp.local:3306 --user=root --passwd=rootpasswd --dbtype=mysql
+    cmd/py-reminders/py-reminders --host=mysql.corp.local:3306 --user=root --passwd=rootpasswd --dbtype=mysql
 
-To run go-reminders stand-alone, execute it as follows with appropriate
+To run py-reminders stand-alone, execute it as follows with appropriate
 environment variables or command line switches:
 
-    cmd/go-reminders/go-reminders ...
+    cmd/py-reminders/py-reminders ...
 
 To get help on the available options, execute it as follows:
 
-    cmd/go-reminders/go-reminders --help
+    cmd/py-reminders/py-reminders --help
 
 ##### In a Container
 Once pushed to Docker, you can run the microservice similarly to:
 
-	docker run -p 8080:8080 -E DBTYPE=mem myregistryrepo/go-reminders
+	docker run -p 8080:8080 -E DBTYPE=mem myregistryrepo/py-reminders
 
 ##### In Kubernetes
 In a kubernetes environment, the command is part of the deployment manifest,
@@ -179,7 +172,7 @@ for example:
 
     ...
     command:
-        - "/go-reminders"
+        - "/py-reminders"
     env:
         - name: DBTYPE
           value: "mysql"
@@ -205,13 +198,13 @@ cat >kustomization.yaml <<EOF
   images:
   - name: docker-registry-repo
     newTag: 1.0.0
-    newName: concourse.corp.local/go-reminders
+    newName: concourse.corp.local/py-reminders
 EOF
 kubectl kustomize . | kubectl apply -f -
 ```
 
 ###### Sample Kubernetes Deployment Using Helm
-The facility generally used to deploy and manage go-reminders is
+The facility generally used to deploy and manage py-reminders is
 [Helm](https://helm.sh). If you are using the concourse pipelines to build and
 deploy, helm will be used automatically.
 
@@ -229,11 +222,11 @@ forced (i.e., git will not track values.yml).
 To deploy using helm, issue a command such as:
 
     cd .../deployments/helm
-    helm install --name go-reminders .
+    helm install --name py-reminders .
 
 and that should create the deployment, which you can check with
 
-    helm status go-reminders
+    helm status py-reminders
 
 Helm is a powerful tool for kubernetes deployment management and a good read
 of [its documentation](https://helm.sh/docs/) is in order for those not yet
@@ -249,10 +242,10 @@ The microservice provides two mechanisms for interacting with the service:
 Upon running the service, e.g.:
 
 - etcd:
-    docker run -d -p 8080:8080 go-reminders /go-reminders -cfgsrc etcd_host:2379
+    docker run -d -p 8080:8080 py-reminders /py-reminders -cfgsrc etcd_host:2379
 
 - vRO:
-    docker run -d -p 8080:8080 go-reminders /go-reminders -cfgtype vro -cfgsrc 172.16.78.227
+    docker run -d -p 8080:8080 py-reminders /py-reminders -cfgtype vro -cfgsrc 172.16.78.227
 
 and assuming that provided you a Docker generated container address as
 172.17.0.1, the REST API exists at http://172.17.0.1:8080/api/reminders and paths further thereafter pursuant to the pattern:
@@ -305,7 +298,7 @@ the various URLs involved in the service (API and HTML).
 
 ## Contributing
 
-The go-reminders project team welcomes contributions from the community. Before you start working with go-reminders, please read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on as an open-source patch. For more detailed information, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+The py-reminders project team welcomes contributions from the community. Before you start working with py-reminders, please read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on as an open-source patch. For more detailed information, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 Copyright: Copyright 2015-2019 VMware, Inc. All Rights Reserved.

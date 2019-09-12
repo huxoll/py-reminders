@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "go-reminders.fullname" . }}
+  name: {{ include "py-reminders.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "go-reminders.name" . }}
-    helm.sh/chart: {{ include "go-reminders.chart" . }}
+    app.kubernetes.io/name: {{ include "py-reminders.name" . }}
+    helm.sh/chart: {{ include "py-reminders.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "go-reminders.name" . }}
+      app.kubernetes.io/name: {{ include "py-reminders.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "go-reminders.name" . }}
+        app.kubernetes.io/name: {{ include "py-reminders.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
@@ -30,11 +30,11 @@ spec:
           livenessProbe:
             httpGet:
               path: {{ .Values.container.livenessProbe.path }}
-              port: go-reminders
+              port: py-reminders
           readinessProbe:
             httpGet:
               path: {{ .Values.container.readinessProbe.path }}
-              port: go-reminders
+              port: py-reminders
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
@@ -47,7 +47,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       imagePullSecrets:
-        - name: go-reminders-registry-creds
+        - name: py-reminders-registry-creds
 
     {{- with .Values.affinity }}
       affinity:

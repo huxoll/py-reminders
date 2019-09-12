@@ -7,18 +7,9 @@
 #
 
 # Grab the latest build output
-cp -a ../cmd/go-reminders/go-reminders .
-
-# Copy the relevant skeleton code
-mkdir -p html/skeleton
-cp -a ../web/static/Skeleton/css html/skeleton/
-cp -a ../web/static/Skeleton/images html/skeleton/
-
-# Copy the template files
-cp -a ../web/templates/tmpl html/
-cp -a ../web/templates/stats html/
+cp -a ../cmd/py-reminders/py-reminders .
 
 # Run the thing. Check it at http://localhost:8080
-./go-reminders -dbtype=mem
+./py-reminders -dbtype=mem
 
 curl -X Post -H "content-Type: application/json" http://localhost:8080/api/reminders -d "$(cat ../test-reminder.json)"

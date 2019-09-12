@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "go-reminders.fullname" . }}-test-connection"
+  name: "{{ include "py-reminders.fullname" . }}-test-connection"
   labels:
-    app.kubernetes.io/name: {{ include "go-reminders.name" . }}
-    helm.sh/chart: {{ include "go-reminders.chart" . }}
+    app.kubernetes.io/name: {{ include "py-reminders.name" . }}
+    helm.sh/chart: {{ include "py-reminders.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   annotations:
@@ -14,5 +14,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "go-reminders.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "py-reminders.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

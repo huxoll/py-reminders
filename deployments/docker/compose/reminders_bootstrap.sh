@@ -22,15 +22,15 @@ case "$SUBCMD" in
     docker-compose up -d
     sleep 10
     docker run -d --link goreminders_db_1:db --link goreminders_etcdsrv_1:etcdsrv \
-      --name go-reminders -p 8080:8080 greent/go-reminders \
+      --name py-reminders -p 8080:8080 greent/py-reminders \
       -cfgurl etcdsrv:4001 -host db
     ;;
 
   destroy)
     docker-compose stop
     docker-compose rm -f
-    docker stop go-reminders
-    docker rm go-reminders
+    docker stop py-reminders
+    docker rm py-reminders
     ;;
   *)
     echo "Invalid option $1"

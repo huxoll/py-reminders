@@ -1,4 +1,4 @@
-# Concourse pipelines for go-reminders
+# Concourse pipelines for py-reminders
 
 ## Prerequisites
 In order to use these pipelines, you must have:
@@ -6,7 +6,7 @@ In order to use these pipelines, you must have:
 - a running [Concourse](https://concourse-ci.org) setup
 - a kubernetes cluster with relevant credentials (k8s secrets) setup
 - a git repo and the related SSH key for housing a file for [semantic version management](https://concoursetutorial.com/miscellaneous/versions-and-buildnumbers/#semver-semantic-versioning)
-- a valid git repo for the go-reminders project (e.g., a github fork or similar) and related private SSH key.
+- a valid git repo for the py-reminders project (e.g., a github fork or similar) and related private SSH key.
 
 The key is to fill out a params.yml file similar by copying a template from
 [examples](examples). There are samples for minikube and PKS based pipelines.

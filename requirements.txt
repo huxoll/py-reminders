@@ -1,0 +1,4 @@
+flask>=1.0.2
+python-dotenv>=0.10
+flask-wtf>=0.14
+flask-sqlalchemy>=2.4.0

@@ -1,4 +1,4 @@
-// Package stats holds the statics logic of the go-reminders application
+// Package stats holds the statics logic of the py-reminders application
 //
 // Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 // Author: Tom Hite (thite@vmware.com)

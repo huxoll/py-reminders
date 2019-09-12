@@ -1,5 +1,5 @@
 #!/bin/bash
-# go-reminders build.sh
+# py-reminders build.sh
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -19,14 +19,14 @@ echo ""
 
 # Build the beast
 cd git-reminders-repo
-CONTAINER=nomatter make cmd/go-reminders/go-reminders
+CONTAINER=nomatter make cmd/py-reminders/py-reminders
 
 # Check static linked binary
 echo "Check static link status:"
-if ldd cmd/go-reminders/go-reminders; then
-    echo "The go-reminders binary is dynamically linked, cannot use it."
+if ldd cmd/py-reminders/py-reminders; then
+    echo "The py-reminders binary is dynamically linked, cannot use it."
     exit 1
 fi
 
 # Copy build artifacts to the output directory
-cp -a cmd/go-reminders/go-reminders ${TOP}/build/
+cp -a cmd/py-reminders/py-reminders ${TOP}/build/

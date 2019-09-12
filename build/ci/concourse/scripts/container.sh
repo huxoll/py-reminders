@@ -1,5 +1,5 @@
 #!/bin/bash
-# go-reminders container.sh
+# py-reminders container.sh
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -19,7 +19,7 @@ echo ""
 
 # Copy build results and static content to the output
 echo "Copy build artifacts to output"
-cp -a ${TOP}/build/go-reminders ${TOP}/container/
+cp -a ${TOP}/build/py-reminders ${TOP}/container/
 # Copy the docker build file
 cp -a ${TOP}/git-reminders-repo/build/docker/Dockerfile ${TOP}/container/
 mkdir -p ${TOP}/container/html/skeleton

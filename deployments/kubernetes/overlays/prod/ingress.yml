@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: go-reminders
+  name: py-reminders
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -9,7 +9,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /go-reminders
+      - path: /py-reminders
         backend:
-          serviceName: go-reminders
+          serviceName: py-reminders
           servicePort: 8080

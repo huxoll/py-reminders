@@ -1,11 +1,11 @@
-# Default values for go-reminders.
+# Default values for py-reminders.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: tdhite/go-reminders
+  repository: tdhite/py-reminders
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -15,12 +15,12 @@ fullnameOverride: ""
 container:
   port:
     containerPort: 8080
-    name: go-reminders
+    name: py-reminders
   env:
     - name: DBTYPE
       value: mem
     - name: VHOST
-      value: "http://minikube.corp.local/go-reminders"
+      value: "http://minikube.corp.local/py-reminders"
   livenessProbe:
     path: /stats/hits
   readinessProbe:
@@ -38,13 +38,13 @@ ingress:
     kubernetes.io/tls-acme: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   paths:
-    path: "/go-reminders"
+    path: "/py-reminders"
   hosts: 
     - "minikube.corp.local"
   tls: []
-  #  - secretName: go-reminders-tls
+  #  - secretName: py-reminders-tls
   #    hosts:
-  #      - go-reminders.local
+  #      - py-reminders.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

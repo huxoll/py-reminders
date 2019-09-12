@@ -1,8 +1,8 @@
 
 
-# Contributing to go-reminders
+# Contributing to py-reminders
 
-The go-reminders project team welcomes contributions from the community. Before you start working with go-reminders, please read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on as an open-source patch.
+The py-reminders project team welcomes contributions from the community. Before you start working with py-reminders, please read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on as an open-source patch.
 
 ## Contribution Flow
 
@@ -17,7 +17,7 @@ This is a rough outline of what a contributor's workflow looks like:
 Example:
 
 ``` shell
-git remote add upstream https://github.com/vmware/go-reminders.git
+git remote add upstream https://github.com/vmware/py-reminders.git
 git checkout -b my-new-feature master
 git commit -a
 git push origin my-new-feature

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row" style="margin-top: 15%">
+  <div class="one column">&nbsp;</div>
+  <div class="ten columns">
+    <h4>Editing Message:</h4>
+    <form action="/save" method="post">
+      <input type="hidden" name="guid" value="{{ reminder.guid }}">
+      {{ form.hidden_tag() }}
+      {{ form.guid() }}
+      {{ form.message(class='u-full-width') }}
+      {% for error in form.message.errors %}
+          <span style="color: red;">{{ error }}</span>
+      {% endfor %}
+      {{ form.submit(class='button-primary') }}
+      <a class="button" href="{{ url_for('index') }}">Cancel</a>
+    </form>
+  </div>
+  <div class="one column">&nbsp;</div>
+  </div>
+{% endblock %}

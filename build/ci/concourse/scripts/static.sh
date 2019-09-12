@@ -1,5 +1,5 @@
 #!/bin/bash
-# go-reminders static.sh
+# py-reminders static.sh
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)

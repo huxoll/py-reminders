@@ -1,5 +1,5 @@
 #!/bin/bash
-# go-reminders kubernetes-deploy.sh
+# py-reminders kubernetes-deploy.sh
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -105,15 +105,15 @@ fi
 ls -lat
 
 # setup kube config
-kubectl config set-cluster go-reminders --server=${cluster_url} --certificate-authority=${TOP}/ca.pem
+kubectl config set-cluster py-reminders --server=${cluster_url} --certificate-authority=${TOP}/ca.pem
 
 
 # set kube user  
-kubectl config set-credentials go-reminders --client-key=${TOP}/key.pem --client-certificate=${TOP}/cert.pem
+kubectl config set-credentials py-reminders --client-key=${TOP}/key.pem --client-certificate=${TOP}/cert.pem
 
 # enable the context
-kubectl config set-context go-reminders --user=go-reminders --cluster=go-reminders
-kubectl config use-context go-reminders
+kubectl config set-context py-reminders --user=py-reminders --cluster=py-reminders
+kubectl config use-context py-reminders
 
 # check kubectl for validity
 kubectl get all --all-namespaces

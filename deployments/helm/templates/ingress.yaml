@@ -1,13 +1,13 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "go-reminders.fullname" . -}}
+{{- $fullName := include "py-reminders.fullname" . -}}
 {{- $ingressPaths := .Values.ingress.paths -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app.kubernetes.io/name: {{ include "go-reminders.name" . }}
-    helm.sh/chart: {{ include "go-reminders.chart" . }}
+    app.kubernetes.io/name: {{ include "py-reminders.name" . }}
+    helm.sh/chart: {{ include "py-reminders.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   {{- with .Values.ingress.annotations }}
@@ -34,7 +34,7 @@ spec:
           - path: {{ . }}
             backend:
               serviceName: {{ $fullName }}
-              servicePort: go-reminders
+              servicePort: py-reminders
 	{{- end }}
   {{- end }}
 {{- end }}

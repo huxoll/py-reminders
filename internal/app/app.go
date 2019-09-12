@@ -1,4 +1,4 @@
-// Package app is the entry point for the go-reminders application
+// Package app is the entry point for the py-reminders application
 //
 // Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 // Author: Tom Hite (thite@vmware.com)
@@ -42,7 +42,7 @@ const (
 	APIBaseUrlDefault  = "http://127.0.0.1:8080"
 	APIBaseUrlUsage    = "set the base url for internal REST api calls"
 	vHostDefault       = ""
-	vHostUsage         = "set the base url for vHost setups like Kubernetes ingress, e.g. http://myhost.corp.local/go-reminders"
+	vHostUsage         = "set the base url for vHost setups like Kubernetes ingress, e.g. http://myhost.corp.local/py-reminders"
 )
 
 func setEnvString(val *string, key string, dflt string) {

@@ -9,22 +9,16 @@ ifndef CONTAINER
 $(error CONTAINER, which specifies the docker container name to build, is not set)
 endif
 
-default: cmd/go-reminders/go-reminders cmd/go-reminders/go-reminders-darwin
+default: cmd/py-reminders/py-reminders cmd/py-reminders/py-reminders-darwin
 
 all: container
 
-container: cmd/go-reminders/go-reminders
+container: cmd/py-reminders/py-reminders
 	cd build/docker; ./build.sh
 .PHONY: container
 
-cmd/go-reminders/go-reminders: go.mod $(GOFILES)
-	cd cmd/go-reminders; GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -a --installsuffix cgo go-reminders.go
-
-cmd/go-reminders/go-reminders-darwin: go.mod $(GOFILES)
-	cd cmd/go-reminders; GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -a -o go-reminders-darwin --installsuffix cgo go-reminders.go 
-
 go.mod:
-	go mod init github.com/vmware/go-reminders
+	go mod init github.com/vmware/py-reminders
 	for m in $$(cat forcemodules); do go get "$$m"; done
 
 test:
@@ -32,18 +26,15 @@ test:
 .PHONY: test
 
 clean:
-	cd cmd/go-reminders && \
-	go clean && \
-	rm -f go-reminders go-reminders-darwin && \
-	go clean -modcache
+	rm -f *.pyc
 .PHONY: clean
 
 run:
-	docker run --name go-reminders -d -p 8080:8080 $(CONTAINER) /go-reminders -a 172.16.78.227
+	docker run --name py-reminders -d -p 8080:8080 $(CONTAINER) /py-reminders -a 172.16.78.227
 .PHONY: run
 
 stop:
-	-killall go-reminders
-	-docker stop go-reminders
-	-docker rm go-reminders
+	-killall py-reminders
+	-docker stop py-reminders
+	-docker rm py-reminders
 .PHONY: stop

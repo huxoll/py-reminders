@@ -4,9 +4,7 @@
 *.swp
 linux-amd64
 kubectl
-
+__pycache__
 deployments/kubernetes/base/kustomization.yaml
-cmd/go-reminders/go-reminders-darwin
-cmd/go-reminders/go-reminders
-build/docker/go-reminders
+build/docker/py-reminders
 build/docker/html

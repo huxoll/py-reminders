@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="nine columns">
+      <h4>All Your Reminders</h4>
+    </div>
+    <div class="three columns">
+      <form action="/html/tmpl/edit" method="post">
+        <input type="hidden" name="guid" value="">
+        <input class="button" type="submit" value="New Reminder">
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="one column">&nbsp;</div>
+    <div class="ten columns">
+      {% if reminders %}
+      <table class="u-full-width">
+        <thead>
+          <th>Reminder</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </thead>
+        <tbody>
+        {% for reminder in reminders %}
+          <tr>
+            <td><p>{{ reminder.message }}</p></td>
+            <td>
+              <form action="/edit" method="post">
+                {{ form.hidden_tag() }}
+                <input type="hidden" name="guid" value="{{ reminder.guid }}">
+                <input class="button-primary" type="submit" value="Edit">
+              </form>
+            </td>
+            <td>
+              <form action="/delete" method="post">
+                <input type="hidden" name="guid" value="{{ reminder.guid }}">
+                <input class="button-primary" type="submit" value="Delete">
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <center><h4>Goodness, you are an elephant &mdash; No reminders!</h4></center>
+      {% endif %}
+    </div>
+    <div class="one column">&nbsp;</div>
+  </div>
+{% endblock %}
+

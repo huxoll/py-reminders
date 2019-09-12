@@ -1,4 +1,4 @@
-# go-reminders minimal container definition
+# py-reminders minimal container definition
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -11,11 +11,11 @@ FROM scratch
 MAINTAINER Tom Hite <thite@vmware.com>
 
 # Add the microservice
-ADD go-reminders /go-reminders
+ADD py-reminders /py-reminders
 
 # Add the content (html and templates)
 ADD html /html
 
 EXPOSE 8080
 
-ENTRYPOINT ["/go-reminders"]
+ENTRYPOINT ["/py-reminders"]

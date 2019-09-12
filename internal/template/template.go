@@ -14,8 +14,8 @@ import (
 	"net/url"
 	"path"
 
-	"github.com/vmware/go-reminders/pkg/reminders"
-	"github.com/vmware/go-reminders/pkg/stats"
+	"github.com/vmware/py-reminders/pkg/reminders"
+	"github.com/vmware/py-reminders/pkg/stats"
 )
 
 const apiRoot = "/api/reminders"

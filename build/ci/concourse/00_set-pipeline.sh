@@ -13,8 +13,8 @@ FLYTARGET=${FLYTARGET:=k8s-cluster}
 PARAMS="${PARAMS:=params.yml}"
 PIPELINE="${PIPELINE:=pipeline-minikube.yml}"
 
-fly -t ${FLYTARGET} set-pipeline --pipeline=go-reminders --load-vars-from="${PARAMS}" --config="${PIPELINE}"
+fly -t ${FLYTARGET} set-pipeline --pipeline=py-reminders --load-vars-from="${PARAMS}" --config="${PIPELINE}"
 
 #if [ $? -eq 0 ]; then
-#	fly -t k8s-cluster unpause-pipeline --pipeline go-reminders
+#	fly -t k8s-cluster unpause-pipeline --pipeline py-reminders
 #fi

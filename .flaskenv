@@ -1,0 +1,2 @@
+FLASK_APP=reminders
+FLASK_ENV=development

@@ -6,7 +6,7 @@
 package app
 
 import (
-	"github.com/vmware/go-reminders/pkg/stats"
+	"github.com/vmware/py-reminders/pkg/stats"
 )
 
 // Global application context variables.

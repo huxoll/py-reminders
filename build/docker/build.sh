@@ -13,7 +13,7 @@ if [ -z "${CONTAINER}" ]; then
 fi
 
 # Grab the latest build output
-cp -a ../../cmd/go-reminders/go-reminders .
+cp -a ../../cmd/py-reminders/py-reminders .
 
 # Copy the relevant skeleton code
 mkdir -p html/skeleton

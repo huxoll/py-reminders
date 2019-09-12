@@ -1,4 +1,4 @@
-# go-reminders pipeline
+# py-reminders pipeline
 #
 # Copyright 2015-2019 VMware, Inc. All Rights Reserved.
 # Author: Tom Hite (thite@vmware.com)
@@ -28,11 +28,11 @@ resources:
   - name: git-reminders-repo
     type: git
     source:
-      uri: ((go-reminders-git-repo))
-      branch: ((go-reminders-git-repo-branch))
+      uri: ((py-reminders-git-repo))
+      branch: ((py-reminders-git-repo-branch))
       private_key: ((private-git-repo-key))
 
-  - name: docker-go-reminders-image
+  - name: docker-py-reminders-image
     type: docker-image
     source:
       repository: ((docker-registry-repo))
@@ -102,7 +102,7 @@ jobs:
           taskimagetag: ((taskimagetag))
           task_cn: ((task_cn))
           task_ca: ((task_ca))
-      - put: docker-go-reminders-image
+      - put: docker-py-reminders-image
         params:
           build: container
           tag: version/number
@@ -118,7 +118,7 @@ jobs:
         trigger: true
       - get: version
         passed: [increment-version]
-      - get: docker-go-reminders-image
+      - get: docker-py-reminders-image
         passed: [build-container]
       - task: task-deployment-files
         file: git-reminders-repo/build/ci/concourse/tasks/deployment-files.yml
@@ -135,7 +135,7 @@ jobs:
           cluster_url: ((k8s-cluster-url))
           namespace: ((k8s-namespace))
           resource_type: deployment
-          resource_name: go-reminders
+          resource_name: py-reminders
           container: ((docker-registry-repo))
           cluster_ca: ((k8s-cluster-ca))
           admin_key: ((k8s-admin-key))

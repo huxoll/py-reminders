@@ -8,13 +8,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-reminders
+  name: py-reminders
   labels:
-    app: go-reminders
+    app: py-reminders
 spec:
   type: ClusterIP
   selector:
-    app: go-reminders
+    app: py-reminders
   ports:
     - port: 8080
       targetPort: 8080

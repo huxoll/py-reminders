@@ -13,8 +13,8 @@ import (
 
 	"github.com/ant0ine/go-json-rest/rest"
 	"github.com/stretchr/graceful"
-	"github.com/vmware/go-reminders/internal/template"
-	"github.com/vmware/go-reminders/pkg/reminders"
+	"github.com/vmware/py-reminders/internal/template"
+	"github.com/vmware/py-reminders/pkg/reminders"
 )
 
 func getUrlRoot() string {
