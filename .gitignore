@@ -1,6 +1,7 @@
 *.log
 *.swp
 *.db
+.DS_Store
 **.pyc
 kubectl
 reminders/__pycache__

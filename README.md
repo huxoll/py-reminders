@@ -144,20 +144,20 @@ For instance To invoke py-reminders with a mysql database at
 mysql.corp.local:3306, with user credentials as root/rootpasswd, issue the
 following command:
 
-    HOST=mysql.corp.local:3306 USER=root PASSWD=rootpasswd DBTYPE=mysql cmd/py-reminders/py-reminders
+    HOST=mysql.corp.local:3306 USER=root PASSWD=rootpasswd DBTYPE=mysql ./py-reminders.py
 
 Alternatively:
 
-    cmd/py-reminders/py-reminders --host=mysql.corp.local:3306 --user=root --passwd=rootpasswd --dbtype=mysql
+    ./py-reminders.py --host=mysql.corp.local:3306 --user=root --passwd=rootpasswd --dbtype=mysql
 
 To run py-reminders stand-alone, execute it as follows with appropriate
 environment variables or command line switches:
 
-    cmd/py-reminders/py-reminders ...
+    ./py-reminders.py ...
 
 To get help on the available options, execute it as follows:
 
-    cmd/py-reminders/py-reminders --help
+    ./py-reminders.py --help
 
 ##### In a Container
 Once pushed to Docker, you can run the microservice similarly to:
@@ -170,7 +170,7 @@ for example:
 
     ...
     command:
-        - "/py-reminders"
+        - "/py-reminders.py"
     env:
         - name: DBTYPE
           value: "mysql"
@@ -296,9 +296,9 @@ the various URLs involved in the service (API and HTML).
 
 ## Contributing
 
-The py-reminders project team welcomes contributions from the community. Before you start working with py-reminders, please read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on as an open-source patch. For more detailed information, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+The py-reminders project team welcomes contributions from the community. 
 
 ## License
-Copyright: Copyright 2015-2019 VMware, Inc. All Rights Reserved.
+Copyright (c) 2015-2019 John Gardner
 
 SPDX-License-Identifier: [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html)

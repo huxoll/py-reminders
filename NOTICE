@@ -1,8 +1,6 @@
 py-reminders
 
-Copyright (c) 2015-2019 VMware, Inc. All Rights Reserved.
-Portions of pkg/reminders also Copyright (c) 2013-2015 Antoine Imbert
-Portions of web/templates also Copyright (c) 2011-2014 Dave Gamache
+Copyright (c) 2015-2019 John Gardner. All Rights Reserved.
 
 This product is licensed to you under the MIT license (the "License").  You may
 not use this product except in compliance with the MIT License.  
