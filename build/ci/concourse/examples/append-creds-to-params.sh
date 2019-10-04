@@ -74,6 +74,10 @@ if [ -z "${K8SHOST}" ]; then
 	K8SHOST=$(kubectl config view -o jsonpath="{.clusters[?(@.name == \"${K8SCLUSTER}\")].cluster.server}")
 fi
 
+# Copy initial params from parent project
+cp ${RUNDIR}/../../../../../go-reminders/build/ci/concourse/params.yml params.yml
+sed -i -e 's/go-reminders/py-reminders/g' params.yml
+
 # cleanup old certs
 awk -f ${RUNDIR}/killcerts.awk params.yml >newparams.yml
 mv newparams.yml params.yml
