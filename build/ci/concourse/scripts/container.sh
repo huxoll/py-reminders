@@ -13,22 +13,23 @@ set -e -x
 TOP="$(pwd)"
 
 # Show current setup
-echo "GOPATH is: " $GOPATH
-echo "TOP is: " $TOP
+echo "$0, TOP is: " $TOP
 echo ""
 
 # Copy build results and static content to the output
 echo "Copy build artifacts to output"
-cp -a ${TOP}/build/py-reminders ${TOP}/container/
+cp -a ${TOP}/build/reminders ${TOP}/container/
+cp -a ${TOP}/build/*.py ${TOP}/container/
 # Copy the docker build file
 cp -a ${TOP}/git-reminders-repo/build/docker/Dockerfile ${TOP}/container/
-mkdir -p ${TOP}/container/html/skeleton
-# Copy the Skeleton files
-cp -a ${TOP}/git-reminders-repo/web/static/Skeleton/css ${TOP}/container/html/skeleton/
-cp -a ${TOP}/git-reminders-repo/web/static/Skeleton/images ${TOP}/container/html/skeleton/
-# Copy the html template files
-cp -a ${TOP}/git-reminders-repo/web/templates/tmpl ${TOP}/container/html/
-cp -a ${TOP}/git-reminders-repo/web/templates/stats ${TOP}/container/html/
+cp -a ${TOP}/git-reminders-repo/requirements.txt ${TOP}/container/
+# mkdir -p ${TOP}/container/html/skeleton
+# # Copy the Skeleton files
+# cp -a ${TOP}/git-reminders-repo/web/static/Skeleton/css ${TOP}/container/html/skeleton/
+# cp -a ${TOP}/git-reminders-repo/web/static/Skeleton/images ${TOP}/container/html/skeleton/
+# # Copy the html template files
+# cp -a ${TOP}/git-reminders-repo/web/templates/tmpl ${TOP}/container/html/
+# cp -a ${TOP}/git-reminders-repo/web/templates/stats ${TOP}/container/html/
 
 # Check what got laid down
 echo "List out the container directory"

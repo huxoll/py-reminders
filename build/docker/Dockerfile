@@ -7,15 +7,13 @@
 #
 
 # Start from scratch
-FROM scratch
-MAINTAINER Tom Hite <thite@vmware.com>
+FROM python:3.7.4
 
 # Add the microservice
-ADD py-reminders /py-reminders
+ADD . /py-reminders
+WORKDIR /py-reminders
 
-# Add the content (html and templates)
-ADD html /html
-
+RUN pip install -r requirements.txt 
 EXPOSE 8080
 
-ENTRYPOINT ["/py-reminders"]
+ENTRYPOINT ["/py-reminders/py-reminders.py"]
