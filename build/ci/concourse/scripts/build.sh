@@ -16,6 +16,9 @@ TOP="$(pwd)"
 echo "TOP is: " $TOP
 echo ""
 
+# change directories to the code
+cd git-reminders-repo
+
 # Install dependencies
 pip install -r requirements.txt
 
