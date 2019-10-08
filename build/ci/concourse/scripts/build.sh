@@ -13,20 +13,16 @@ set -e -x
 TOP="$(pwd)"
 
 # Show current setup
-echo "GOPATH is: " $GOPATH
 echo "TOP is: " $TOP
 echo ""
 
-# Build the beast
-cd git-reminders-repo
-CONTAINER=nomatter make cmd/py-reminders/py-reminders
+# Install dependencies
+pip install -r requirements.txt
 
-# Check static linked binary
-echo "Check static link status:"
-if ldd cmd/py-reminders/py-reminders; then
-    echo "The py-reminders binary is dynamically linked, cannot use it."
-    exit 1
-fi
+# Build the beast
+# Whee, interpreted language!  No build step!
 
 # Copy build artifacts to the output directory
-cp -a cmd/py-reminders/py-reminders ${TOP}/build/
+cp -a reminders ${TOP}/build/
+cp -a *.py ${TOP}/build/
+cp requirements.txt ${TOP}/build/

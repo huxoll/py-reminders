@@ -22,7 +22,7 @@ inputs:
   - name: git-reminders-repo
 
 outputs:
-  - name: go-error-files
+  - name: py-error-files
 
 run:
   path: git-reminders-repo/build/ci/concourse/scripts/static.sh
