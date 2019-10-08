@@ -28,6 +28,7 @@ def edit():
 @app.route('/save', methods=['GET', 'POST'])
 def save():
     form = ReminderForm()
+    reminder = None
     if form.validate_on_submit():
         # Do a save
         flash("Saved reminder \"{}\"".format(form.message.data))
@@ -42,8 +43,11 @@ def save():
     if form.guid.data:
         reminder = Reminder.query.get(form.guid.data)
         form.message.data = reminder.message
-    return render_template('edit.html', reminder=reminder,
-                           form=form)
+    if reminder:
+        return render_template('edit.html', reminder=reminder,
+                               form=form)
+    else:
+        return render_template('edit.html', form=form)
 
 
 @app.route('/delete', methods=['POST'])
