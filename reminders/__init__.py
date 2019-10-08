@@ -20,7 +20,9 @@ if app.env == 'development':
         db.session.add(reminder1)
         db.session.add(reminder2)
         db.session.commit()
-
+if app.env == 'production':
+    # Prod mode, just ensure DB exists.
+    db.create_all()
 
 @app.shell_context_processor
 def make_shell_context():
