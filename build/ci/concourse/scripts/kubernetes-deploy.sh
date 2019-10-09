@@ -12,7 +12,7 @@ set -x
 # Save current directory
 TOP="$(pwd)"
 echo "PATH: ${PATH}"
-export PATH=${PATH:/usr/local/bin}
+export PATH=${PATH}:/usr/local/bin
 
 # install kubectl
 EXE=$(which kubectl)
