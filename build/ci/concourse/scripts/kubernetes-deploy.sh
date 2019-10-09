@@ -29,6 +29,7 @@ if [ $? -ne 0 ]; then
         exit 1
     fi
     chmod +x kubectl
+    export PATH=${PATH}:${TOP}
 else
     export PATH=${PATH}:${TOP}
 fi
