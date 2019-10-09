@@ -32,7 +32,5 @@ spec:
             - containerPort: 8080
               name: py-reminders
               protocol: TCP
-          command:
-            - "/py-reminders"
       imagePullSecrets:
         - name: py-reminders-registry-creds
