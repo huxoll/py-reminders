@@ -64,7 +64,6 @@ def delete():
         db.session.commit()
         flash("Deleted reminder \"{}\"".format(reminder.message))
         return redirect('/index')
-        form.message.errors
     flash("Deleted reminder form guid \"{}\"".format(form.guid))
     flash("Deleted reminder error \"{}\"".format(form.errors))
     print("Form was not valid.")
