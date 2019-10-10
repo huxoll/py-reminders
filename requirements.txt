@@ -3,4 +3,5 @@ python-dotenv>=0.10
 flask-wtf>=0.14
 flask-sqlalchemy>=2.4.0
 pytest>=4.3.0
+pylint>=2.3.1
 
