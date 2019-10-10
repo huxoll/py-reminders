@@ -4,7 +4,6 @@ import tempfile
 import pytest
 
 from reminders import app
-from reminders.models import Reminder
 
 @pytest.fixture
 def client():
