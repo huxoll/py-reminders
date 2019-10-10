@@ -22,16 +22,17 @@ cd git-reminders-repo
 pip install -r requirements.txt
 
 # Test the code for formatting
-#find . -name \*.go | xargs gofmt -l | tee ${TOP}/go-error-files/gofmt.lst
+find . -name \*.py | xargs pylint | tee ${TOP}/py-error-files/pylint.lst
 
 # Check the results
-# if [ $(cat ${TOP}/go-error-files/gofmt.lst | wc -l) -ne 0 ]; then
-#     cat ${TOP}/go-error-files/gofmt.lst
-#     exit 1
-# fi
+if [ $(cat ${TOP}/py-error-files/pylint.lst | wc -l) -gt 4 ]; then
+    cat ${TOP}/py-error-files/pylint.lst
+    echo 'Too many style errors! Check syntax.'
+    exit 1
+fi
 
 # Test the feature code
-CONTAINER=pytest
+pytest
 
 # check the ci pipeline scripts
 cd build/ci/concourse/scripts
