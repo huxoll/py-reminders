@@ -7,6 +7,7 @@ db = SQLAlchemy(app)
 
 from .models import Reminder
 from . import routes
+from . import api
 
 if app.env == 'development':
     print("Debug mode, creating DB and some reminders.")

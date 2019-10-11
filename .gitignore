@@ -6,5 +6,6 @@
 kubectl
 reminders/__pycache__
 deployments/kubernetes/base/kustomization.yaml
-build/docker/py-reminders
-build/docker/html
+build/docker/reminders
+build/docker/*.py
+build/docker/*.txt
