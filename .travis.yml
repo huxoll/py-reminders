@@ -31,5 +31,6 @@ jobs:
         - pytest
     - stage: test_docker
       script:
-        - docker build -t py-reminders:test .
-        - docker run -it --rm py-reminders:test
+        - make container.nopush
+        - make run
+        - docker ps 

@@ -14,8 +14,12 @@ default: container
 all: container
 
 container: prereqs
-	cd build/docker; ./build.sh
+	cd build/docker; ./build.sh 
 .PHONY: container
+
+container.nopush: prereqs
+	cd build/docker; ./build.sh nopush
+.PHONY: container.nopush
 
 prereqs:
 	pip install -r requirements.txt
