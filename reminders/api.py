@@ -1,6 +1,6 @@
 from flask_restful import Resource, Api
 from flask import jsonify
-from . import app, db
+from . import app
 from .models import Reminder
 
 api = Api(app)
