@@ -16,6 +16,9 @@ addons:
   apt:
     update: true
 
+env:
+  - CONTAINER=py-reminders:test
+
 before_install:
   - make prereqs
 jobs:
@@ -24,8 +27,6 @@ jobs:
       script:
         - find . -name \*.py | xargs pylint
     - stage: test_code
-      env:
-        - CONTAINER=py-reminders:test
       script:
         - pytest
     - stage: test_docker
