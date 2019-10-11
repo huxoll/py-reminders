@@ -99,6 +99,7 @@ The project includes a Makefile for use in building the py-reminders
 microservice. To build a Docker container, you must provide a container name
 for pushing to a registry.
 
+
     export CONTAINER=myreponame/py-reminders
     make
 
@@ -109,7 +110,7 @@ makefile as follows to preclude immediately pushing the Docker image, instead
 using the concourse resource to perform that task:
 
     export CONTAINER=myreponame/py-reminders:version-tag
-    make cmd/py-reminders/py-reminders
+    make prereqs
 
 #### CI/CD Pipelines
 The code includes various pipeines in the [build/ci](build/ci) directory. They
@@ -169,8 +170,6 @@ In a kubernetes environment, the command is part of the deployment manifest,
 for example:
 
     ...
-    command:
-        - "/py-reminders.py"
     env:
         - name: DBTYPE
           value: "mysql"
@@ -286,7 +285,7 @@ The :id value is the database record id.
 
 #### The HTML Interface
 To reach the HTML interface (given the same sample as above), browse to:
-http://172.17.0.1/html/tmpl/index and the bulk  of the HTML paths are
+http://172.17.0.1/index and the bulk  of the HTML paths are
 available from that page or others as appropriate given traversal of the 'site.'
 
 Another HTML area is the /stats/hits, which provides a view of hit counts on
@@ -296,7 +295,7 @@ the various URLs involved in the service (API and HTML).
 
 ## Contributing
 
-The py-reminders project team welcomes contributions from the community. 
+The py-reminders project team welcomes contributions from the community.
 
 ## License
 Copyright (c) 2015-2019 John Gardner

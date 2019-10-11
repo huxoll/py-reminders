@@ -9,20 +9,21 @@ ifndef CONTAINER
 $(error CONTAINER, which specifies the docker container name to build, is not set)
 endif
 
-default: cmd/py-reminders/py-reminders cmd/py-reminders/py-reminders-darwin
+default: container
 
 all: container
 
-container: cmd/py-reminders/py-reminders
+container: prereqs
 	cd build/docker; ./build.sh
 .PHONY: container
 
-go.mod:
-	go mod init github.com/vmware/py-reminders
-	for m in $$(cat forcemodules); do go get "$$m"; done
+prereqs:
+	pip install -r requirements.txt
+.PHONY: prereqs
 
-test:
-	go test ./...
+test: prereqs
+	find . -name \*.py | xargs pylint
+	pytest
 .PHONY: test
 
 clean:
@@ -30,7 +31,7 @@ clean:
 .PHONY: clean
 
 run:
-	docker run --name py-reminders -d -p 8080:8080 $(CONTAINER) /py-reminders -a 172.16.78.227
+	docker run --name py-reminders -d -p 9090:8080 $(CONTAINER) /py-reminders/py-reminders.py -a 172.16.78.227
 .PHONY: run
 
 stop:

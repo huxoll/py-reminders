@@ -13,16 +13,7 @@ if [ -z "${CONTAINER}" ]; then
 fi
 
 # Grab the latest build output
-cp -a ../../cmd/py-reminders/py-reminders .
-
-# Copy the relevant skeleton code
-mkdir -p html/skeleton
-cp -a ../../web/static/Skeleton/css html/skeleton/
-cp -a ../../web/static/Skeleton/images html/skeleton/
-
-# Copy the template files
-cp -a ../../web/templates/tmpl html/
-cp -a ../../web/templates/stats html/
+cp -a ../../*.py ../../reminders ../../requirements.txt .
 
 # Build and push the container
 docker build --rm -t ${CONTAINER} .
