@@ -25,7 +25,7 @@ jobs:
         - find . -name \*.py | xargs pylint
     - stage: test_code
       env:
-        - AWS_ARGS=--no-verify-ssl
+        - CONTAINER=py-reminders:test
       script:
         - pytest
     - stage: test_docker
