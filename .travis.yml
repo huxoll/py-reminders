@@ -1,0 +1,34 @@
+stages:
+  - lint
+  - name: test_code
+    if: type IN (push, cron)
+  - name: test_docker
+    if: type IN (push, cron)
+
+language: python
+
+sudo: required
+
+services:
+  - docker
+
+addons:
+  apt:
+    update: true
+
+before_install:
+  - make prereqs
+jobs:
+  include:
+    - stage: lint
+      script:
+        - find . -name \*.py | xargs pylint
+    - stage: test_code
+      env:
+        - AWS_ARGS=--no-verify-ssl
+      script:
+        - pytest
+    - stage: test_docker
+      script:
+        - docker build -t py-reminders:test .
+        - docker run -it --rm py-reminders:test
