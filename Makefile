@@ -13,11 +13,11 @@ default: container
 
 all: container
 
-container: prereqs
+container:
 	cd build/docker; ./build.sh 
 .PHONY: container
 
-container.nopush: prereqs
+container.nopush:
 	cd build/docker; ./build.sh nopush
 .PHONY: container.nopush
 
@@ -25,8 +25,11 @@ prereqs:
 	pip install -r requirements.txt
 .PHONY: prereqs
 
-test: prereqs
+lint: prereqs
 	find . -name \*.py | xargs pylint
+.PHONY: lint
+
+test: lint
 	pytest
 .PHONY: test
 
