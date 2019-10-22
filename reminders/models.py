@@ -41,3 +41,21 @@ class Reminder(TimestampMixin, db.Model):
             'updated_at': dump_datetime(self.updated_at),
             'deleted_at': dump_datetime(self.deleted_at)
         }
+
+
+class Stat(TimestampMixin, db.Model):
+    path = db.Column(db.String(255), primary_key=True)
+    count = db.Column(db.Integer, default=0)
+
+    def __repr__(self):
+        return '<Stat {}={}>'.format(self.path, self.count)
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+    @property
+    def serialize(self):
+        """Return object data in easily serializable format"""
+        return {
+            self.path: self.count
+        }

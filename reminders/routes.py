@@ -1,12 +1,27 @@
-from flask import render_template, redirect, flash
+from flask import render_template, redirect, flash, request
 from . import app, db
 from .forms import ReminderForm, ReminderDeleteForm
-from .models import Reminder
+from .models import Reminder, Stat
 from datetime import datetime
+from functools import wraps
+
+
+def hitcount(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        stat = Stat.query.get(request.path)
+        if not stat:
+            stat = Stat(path=request.path, count=0)
+        stat.count += 1
+        db.session.add(stat)
+        db.session.commit()
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route('/')
 @app.route('/index')
+@hitcount
 def index():
     form = ReminderForm()
     reminders = Reminder.query.filter_by(deleted_at=None)
@@ -16,6 +31,7 @@ def index():
 
 
 @app.route('/edit', methods=['GET', 'POST'])
+@hitcount
 def edit():
     form = ReminderForm()
     if form.guid.data:
@@ -26,6 +42,7 @@ def edit():
 
 
 @app.route('/save', methods=['GET', 'POST'])
+@hitcount
 def save():
     form = ReminderForm()
     reminder = None
@@ -51,6 +68,7 @@ def save():
 
 
 @app.route('/delete', methods=['POST'])
+@hitcount
 def delete():
     form = ReminderDeleteForm()
     if form.validate_on_submit():

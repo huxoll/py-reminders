@@ -3,7 +3,9 @@ from flask import jsonify
 from flask import request
 from flask import abort
 from . import app, db
-from .models import Reminder
+from .models import Reminder, Stat
+from .routes import hitcount
+
 from datetime import datetime
 
 api = Api(app)
@@ -38,6 +40,8 @@ class ReminderResource(Resource):
             abort(400)
         reminder = Reminder.query.get(reminder_id)
         reminder.message = request.json['message']
+        db.session.add(reminder)
+        db.session.commit()
         return reminder.serialize, 200
 
     def delete(self, reminder_id):
@@ -48,5 +52,20 @@ class ReminderResource(Resource):
         return 204
 
 
+class StatListResource(Resource):
+    """
+    Return a hit counter, like:
+    {
+        "/": 5,
+        "/stats/hits": 1
+    }
+    """
+    @hitcount
+    def get(self):
+        stats = Stat.query
+        return jsonify([i.serialize for i in stats.all()])
+
+
 api.add_resource(ReminderListResource, '/api/reminders')
 api.add_resource(ReminderResource, '/api/reminders/<string:reminder_id>')
+api.add_resource(StatListResource, '/stats/hits')
